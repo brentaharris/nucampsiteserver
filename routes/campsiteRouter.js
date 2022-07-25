@@ -1,7 +1,7 @@
 const express = require('express');
 const campsiteRouter = express.Router();
 
-//base routing
+//route level routing
 campsiteRouter.route('/')
 .all((req, res, next) => {
     res.statusCode = 200;
@@ -24,17 +24,21 @@ campsiteRouter.route('/')
 
 // campsiteId routing
 campsiteRouter.route('/:campsiteId')
-.all((req, res) => {
+.all((req, res, next) => {
     res.statusCode = 200;
-    req.setHeader('Content/Type', 'text/plain')
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+.get((req, res) => {
     res.end(`Will send the details of the campsite ${req.params.campsiteId}`)
 })
 .post((req, res) => {
-    res.statusCode = 403;
-    res.end(`POST operation not supported on /campsite/${req.params.campsiteId}`)
+    res.end(`Will update the campsite: ${req.body.name} with description ${req.body.description}`)
+
 })
 .put((req, res) => {
-    res.end(`Will update the campsite: ${req.body.name} with description ${req.body.description}`)
+    res.statusCode = 403;
+    res.end(`PUT operation not supported on /campsite/${req.params.campsiteId}`)
 })
 .delete((req, res) => {
     res.end(`Deleting campsite of id: ${res.params.campsiteId}`)

@@ -1,29 +1,29 @@
 const express = require('express');
-const promotionsRouter = express.Router();
+const promotionRouter = express.Router();
 
 //base routing
-promotionsRouter.route('/')
+promotionRouter.route('/')
 .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req, res) => {
-    res.end('Will send all the promotionss to you');
+    res.end('Will send all the promotions to you');
 })
 .post((req, res) => {
     res.end(`Will add the promotions: ${req.body.name} with description: ${req.body.description}`);
 })
 .put((req, res) => {
     res.statusCode = 403;
-    res.end('PUT operation not supported on /promotionss');
+    res.end('PUT operation not supported on /promotions');
 })
 .delete((req, res) => {
-    res.end('Deleting all promotionss');
+    res.end('Deleting all promotions');
 });
 
 // promotionsId routing
-promotionsRouter.route('/:promotionsId')
+promotionRouter.route('/:promotionsId')
 .all((req, res) => {
     res.statusCode = 200;
     req.setHeader('Content/Type', 'text/plain')
@@ -43,7 +43,4 @@ promotionsRouter.route('/:promotionsId')
 
 
 
-
-
-
-module.exports = promotionsRouter;
+module.exports = promotionRouter;

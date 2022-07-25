@@ -24,17 +24,20 @@ partnerRouter.route('/')
 
 // partnerId routing
 partnerRouter.route('/:partnerId')
-.all((req, res) => {
+.all((req, res, next) => {
     res.statusCode = 200;
-    req.setHeader('Content/Type', 'text/plain')
+    res.setHeader('Content/Type', 'text/plain')
+    next()
+})
+.get((req, res) => {
     res.end(`Will send the details of the partner ${req.params.partnerId}`)
 })
 .post((req, res) => {
-    res.statusCode = 403;
-    res.end(`POST operation not supported on /partner/${req.params.partnerId}`)
+    res.end(`Will update the partner: ${req.body.name} with description ${req.body.description}`)
 })
 .put((req, res) => {
-    res.end(`Will update the partner: ${req.body.name} with description ${req.body.description}`)
+    res.statusCode = 403;
+    res.end(`PUT operation not supported on /partner/${req.params.partnerId}`)
 })
 .delete((req, res) => {
     res.end(`Deleting partner of id: ${res.params.partnerId}`)
