@@ -3,7 +3,7 @@ const Campsite = require('../models/campsite');
 
 const campsiteRouter = express.Router();
 
-//route level routing
+// ---- base route level routing ---- //
 campsiteRouter.route('/')
 .get((req, res, next) => {
     Campsite.find()
@@ -38,7 +38,7 @@ campsiteRouter.route('/')
     .catch(err => next(err))
 });
 
-// campsiteId routing
+// ---- campsiteId routing ---- //
 campsiteRouter.route('/:campsiteId')
 .get((req, res, next) => {
     Campsite.findById(req.params.campsiteId)
