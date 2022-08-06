@@ -15,14 +15,14 @@ const partnerRouter = require('./routes/partnerRouter');
 
 const url = config.mongoUrl
 const connect = mongoose.connect(url, {
-  useCreateIndex: true,
-  useFindAndModify: false,
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
 
 connect.then(() => console.log('Connected correctly to mongoDB server.'), 
-  err => console.log(err)
+    err => console.log(err)
 );
 
 const app = express();
@@ -52,7 +52,7 @@ app.use('/partners', partnerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // error handler
