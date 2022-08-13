@@ -2,9 +2,8 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-const mongoose = require('mongoose')
-const passport = require('passport')
-const config = require('./config')
+const passport = require('passport');
+const config = require('./config');
 
 
 const indexRouter = require('./routes/index');
@@ -12,9 +11,10 @@ const usersRouter = require('./routes/users');
 const campsiteRouter = require('./routes/campsiteRouter');
 const promotionRouter = require('./routes/promotionRouter');
 const partnerRouter = require('./routes/partnerRouter');
-const uploadRouter = require('./routes/uploadRouter')
+const uploadRouter = require('./routes/uploadRouter');
 
-const url = config.mongoUrl
+const mongoose = require('mongoose');
+const url = config.mongoUrl;
 const connect = mongoose.connect(url, {
     useCreateIndex: true,
     useFindAndModify: false,
